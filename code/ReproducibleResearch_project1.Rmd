@@ -1,0 +1,37 @@
+Reproducible Research
+======================
+
+# Project 1
+
+## Loading and preprocessing the data
+### Load raw data from CSV file.
+```{r, load_data}
+#cwd <- "C:\\Users\\martin-trejo\\Dropbox\\Coursera_Specializations\\Data_Science_Specialization\\05_Reproducible Research\\project_1\\"
+cwd<- "/home/martin-trejo/Dropbox/Coursera_Specializations/Data_Science_Specialization/05_Reproducible_Research/project_1/data/"
+filename <- "activity.csv"
+raw_data <- read.csv(paste0(cwd, filename), stringsAsFactors = TRUE)
+```
+
+### Clean data, remove NA values from dataset.
+```{r, Clean_data}
+clean_data <- raw_data[complete.cases(raw_data),]
+num_clean_records <- nrow(clean_data); num_clean_records
+```
+
+### Processing the data
+
+```{r, Process_data}
+total_steps_per_day <- tapply(clean_data$steps, clean_data$date, FUN = sum, 
+                              na.rm = TRUE, default = 0, simplify = TRUE)
+
+as.data.frame(total_steps_per_day, row.names = names(total_steps_per_day) )
+
+hist(total_steps_per_day, main = "HISTOGRAM OF TOTAL NUMBER OF STEPS PER DAY", xlab= "Date", ylab= "Steps taken")
+
+steps_per_day_summary1 <-c(mean(total_steps_per_day), median(total_steps_per_day))
+names(steps_per_day_summary1) <- c("mean","median")
+steps_per_day_summary1
+
+```
+
+
