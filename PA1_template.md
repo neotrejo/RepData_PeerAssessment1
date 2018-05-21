@@ -204,8 +204,8 @@ and report the mean and median total number of steps taken per day.
 ```
 
 ```
-##    mean  median 
-## 10696.7 10752.0
+##     mean   median 
+## 10785.59 10765.00
 ```
 Do these values differ from the estimates from the first part of the assignment? 
 
